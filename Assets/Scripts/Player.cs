@@ -55,7 +55,9 @@ public class Player : MonoBehaviour
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         if (canStir)
         {
-            rb.velocity = direction.normalized * speed;
+            var movement = direction * speed;
+            movement.y = rb.velocity.y;
+            rb.velocity = movement;
         }
         }
 

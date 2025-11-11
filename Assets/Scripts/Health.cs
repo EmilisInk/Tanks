@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -20,7 +21,18 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            print("TODO: DIE");
+            
+            var player = GetComponent<Player>();
+            if(player.isPlayer1)
+            {
+                Score.Instance.setScore(p2: 1);
+            }
+            else
+            {
+                Score.Instance.setScore(p1:1);
+            }
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         currentHealth -= damage;
